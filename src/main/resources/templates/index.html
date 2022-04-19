@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Overview</title>
+</head>
+<body>
+<div align="center">
+  <h1>Location List</h1>
+  <a href="/new">Add New Entry</a>
+  <table border="1" cellpadding="10">
+    <thead>
+    <tr>
+      <th>Entry ID</th>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${entryList}">
+      <td th:text="${entry.id}">Entry ID</td>
+      <td th:text="${entry.name}">Name</td>
+      <td th:text="${entry.location}">Location</td>
+      <td>
+        <a th:href="@{'/edit/'+${entry.id}}">Edit</a>
+        &nbsp;&nbsp;&nbsp;
+        <a th:href="@{'/delete/'+${entry.id}}">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+
+</html>
