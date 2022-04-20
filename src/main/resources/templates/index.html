@@ -11,7 +11,7 @@
   <table border="1" cellpadding="10">
     <thead>
     <tr>
-      <th>Entry ID</th>
+      <th>Entry Image</th>
       <th>Name</th>
       <th>Location</th>
       <th>Action</th>
@@ -19,7 +19,7 @@
     </thead>
     <tbody>
     <tr th:each="entry : ${entryList}">
-      <td th:text="${entry.id}">Entry ID</td>
+      <th scope="row"><img alt="" th:src="*{'data:image/jpeg;base64,'+{entry.image}}" style="width:200px"></th>
       <td th:text="${entry.name}">Name</td>
       <td th:text="${entry.location}">Location</td>
       <td>
@@ -31,6 +31,7 @@
     </tbody>
   </table>
 </div>
+<script src="js/jquery-3.1.1.min.js"></script>
 </body>
 
 </html>

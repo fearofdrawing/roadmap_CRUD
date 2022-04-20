@@ -8,8 +8,12 @@
 <div align="center">
   <h1>New Entry</h1>
   <br />
-  <form action="#" th:action="@{/save}" th:object="${entry}" method="post">
+  <form action="#" th:action="@{/save}" th:object="${entry}" method="post" enctype="multipart/form-data">
     <table border="0" cellpadding="10">
+      <tr>
+        <td>Image:</td>
+        <td><input type="file" th:field="*{image}"/></td>
+      </tr>
       <tr>
         <td>Name:</td>
         <td><input type="text" th:field="*{name}"/></td>
@@ -24,6 +28,7 @@
     </table>
   </form>
 </div>
+<script src="js/jquery-3.1.1.min.js"></script>
 </body>
 
 </html>
