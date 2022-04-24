@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="locations")
@@ -15,11 +14,22 @@ public class Entry {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String name;
+  private String title;
   private String location;
+  private String category;
   @Lob
   @Column
   private String image;
+
+  public Entry() {
+
+  }
+
+  public Entry(String title, String location, String category) {
+    this.title = title;
+    this.location = location;
+    this.category = category;
+  }
 
   public Long getId() {
     return id;
@@ -29,12 +39,12 @@ public class Entry {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getTitle() {
+    return title;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getLocation() {
@@ -53,4 +63,11 @@ public class Entry {
     this.image = image;
   }
 
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
 }

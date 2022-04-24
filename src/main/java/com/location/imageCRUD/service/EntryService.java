@@ -18,10 +18,6 @@ public class EntryService {
   @Autowired
   private EntryRepository entryRepository;
 
-  public List<Entry> listAll() {
-    return entryRepository.findAll();
-  }
-
   public Entry getEntryById(Long id) {
     return entryRepository.findById(id).get();
   }
@@ -30,7 +26,7 @@ public class EntryService {
     entryRepository.deleteById(id);
   }
 
-  public void saveEntry(MultipartFile file, String name, String location) {
+  public void saveEntry(MultipartFile file, String name, String location, String category) {
 
     Entry entry = new Entry();
     String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -43,9 +39,18 @@ public class EntryService {
       e.printStackTrace();
     }
 
-    entry.setName(name);
+    entry.setTitle(name);
     entry.setLocation(location);
+    entry.setCategory(category);
 
     entryRepository.save(entry);
   }
+
+  public List<Entry> listAll (String keyword) {
+    if (keyword != null) {
+      return entryRepository.findAll(keyword);
+    }
+    return entryRepository.findAll();
+  }
+
 }

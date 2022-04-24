@@ -5,6 +5,7 @@ import com.location.imageCRUD.service.EntryService;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,9 +24,10 @@ public class AppController {
   EntryService entryService;
 
   @RequestMapping("/")
-  public String viewHomePage(Model model) {
-    List<Entry> entryList = entryService.listAll();
+  public String viewHomePage(Model model, @Param("keyword") String keyword) {
+    List<Entry> entryList = entryService.listAll(keyword);
     model.addAttribute("entryList", entryList);
+    model.addAttribute("keyword", keyword);
 
     return "index";
   }
@@ -41,9 +43,10 @@ public class AppController {
   public String saveEntry(
       @RequestParam ("image") MultipartFile file,
       @RequestParam ("name") String name,
-      @RequestParam ("location") String location
+      @RequestParam ("location") String location,
+      @RequestParam ("category") String category
       ) {
-    entryService.saveEntry(file, name, location);
+    entryService.saveEntry(file, name, location, category);
 
     return "redirect:/";
   }
