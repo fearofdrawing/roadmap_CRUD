@@ -10,28 +10,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-// try - catch vs "throws exception" ????
-
 @Service
 public class EntryService {
 
   @Autowired
   private EntryRepository entryRepository;
 
-  public Entry getEntryById(Long id) {
-    return entryRepository.findById(id).get();
-  }
-
-  public void deleteEntry(Long id) {
-    entryRepository.deleteById(id);
-  }
-
-  public void saveEntry(MultipartFile file, String name, String location, String category) {
+  public Entry saveEntry(MultipartFile file, String title, String location, String category) {
 
     Entry entry = new Entry();
-    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
-    // entry.setImage() :
     try {
       entry.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
     }
@@ -39,11 +27,11 @@ public class EntryService {
       e.printStackTrace();
     }
 
-    entry.setTitle(name);
+    entry.setTitle(title);
     entry.setLocation(location);
     entry.setCategory(category);
 
-    entryRepository.save(entry);
+    return entryRepository.save(entry);
   }
 
   public List<Entry> listAll (String keyword) {
@@ -51,6 +39,14 @@ public class EntryService {
       return entryRepository.findAll(keyword);
     }
     return entryRepository.findAll();
+  }
+
+  public Entry getEntryById(Long id) {
+    return entryRepository.findById(id).get();
+  }
+
+  public void deleteEntry(Long id) {
+    entryRepository.deleteById(id);
   }
 
 }

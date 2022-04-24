@@ -42,11 +42,11 @@ public class AppController {
   @PostMapping("/save")
   public String saveEntry(
       @RequestParam ("image") MultipartFile file,
-      @RequestParam ("name") String name,
+      @RequestParam ("title") String title,
       @RequestParam ("location") String location,
       @RequestParam ("category") String category
       ) {
-    entryService.saveEntry(file, name, location, category);
+    entryService.saveEntry(file, title, location, category);
 
     return "redirect:/";
   }

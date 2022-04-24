@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import lombok.Builder;
 
+@Builder
 @Entity
 @Table(name="locations")
 public class Entry {
@@ -22,7 +24,14 @@ public class Entry {
   private String image;
 
   public Entry() {
+  }
 
+  public Entry(Long id, String title, String location, String category, String image) {
+    this.id = id;
+    this.title = title;
+    this.location = location;
+    this.category = category;
+    this.image = image;
   }
 
   public Entry(String title, String location, String category) {
