@@ -1,96 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://thymeleaf.org">
-<!--link th:href="@{/bootstrap.min.css}" rel="stylesheet"-->
-<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+<html lang="en">
 <head>
-  <meta charset="utf-8" name="viewport" content= "width=device-width, initial-scale=1.0">
-  <style>
-            .gfg {
-                font-size:40px;
-                font-weight:bold;
-                color:green;
-                text-align:center;
-            }
-            .geeks {
-                font-size:17px;
-                text-align:center;
-            }
-            p {
-                text-align:justify;
-            }
-        </style>
-  <title>Images</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>Hello, world!</title>
 </head>
 <body>
 <div align="center">
-  <div>
-    <h1>List Of All Entries</h1>
-    <a href="/new">Add New Entry</a>
-  </div>
-
-  <div>&nbsp;</div>
-
-  <div>
-    <form th:action="@{/}">
-      Filter:
-      <input type="text" name="keyword" th:value="${keyword}"/>
-      &nbsp;
-      <input type="submit" value="Search"/>
-      &nbsp;
-      <input type="button" value="Clear" onclick="clearFilter()"/>
-    </form>
-  </div>
-
-  <div>&nbsp;</div>
-
-  <table border="1" cellpadding="10" align="center">
-    <thead>
-    <tr>
-      <th>Image</th>
-      <th>Title</th>
-      <th>Location</th>
-      <th>Category</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="entry : ${entryList}">
-      <th scope="row"><img alt="" th:src="*{'data:image;base64,'+{entry.image}}" style="width:200px"></th>
-      <td th:text="${entry.title}">Title</td>
-      <td th:text="${entry.location}">Location</td>
-      <td th:text="${entry.category}">Category</td>
-      <td>
-        <a th:href="@{'/edit/'+${entry.id}}">Edit</a>
-        &nbsp;&nbsp;&nbsp;
-        <a th:href="@{'/delete/'+${entry.id}}">Delete</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div>
+  <h1>List Of All Entries</h1>
+  <a href="/new">Add New Entry</a>
 </div>
-<p>Click the button to get your coordinates!</p>
-<button onclick="getLocation()">Get Location!</button>
-<p id="demo"></p>
+
+<div>&nbsp;</div>
+
+<div>
+  <form th:action="@{/}">
+    Filter:
+    <input type="text" name="keyword" th:value="${keyword}"/>
+    &nbsp;
+    <input type="submit" value="Search"/>
+    &nbsp;
+    <input type="button" value="Clear" onclick="clearFilter()"/>
+  </form>
+</div>
+  <div>&nbsp;</div>
+</div>
+<div class="container">
+  <div class="row g-3">
+    <div th:each="entry : ${entryList}" class="col-12 col-md-6 col-lg-4">
+      <div class="card">
+        <img alt="" th:src="*{'data:image;base64,'+{entry.image}}" class="card-img-top">
+        <div class="card-body" align="center">
+          <h6 class="card-title" th:text="${entry.title}" ></h6>
+          <p class="card-text" th:text="${entry.location}"></p>
+          <p class="card-text" th:text="${entry.category}"></p>
+          <div>
+
+              <a th:href="@{'/edit/'+${entry.id}}" align="left">Edit</a>
+
+            &nbsp;
+
+              <a th:href="@{'/delete/'+${entry.id}}" align="right">Delete</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
   function clearFilter() {
   window.location = '/';
   }
 </script>
-<script>
-  var x = document.getElementById("demo");
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-      x.innerHTML = "Geolocation is not supported by this browser";
-      }
-  }
-  function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-  }
-</script>
-<!--script src="js/jquery-3.1.1.min.js"></script-->
-</body>
 
-</html>
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->

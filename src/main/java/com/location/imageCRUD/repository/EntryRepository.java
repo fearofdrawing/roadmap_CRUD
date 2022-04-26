@@ -2,7 +2,6 @@ package com.location.imageCRUD.repository;
 
 import com.location.imageCRUD.model.Entry;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,5 +14,7 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
   + " LIKE %?1%")
  List<Entry> findAll(String keyword);
 
-  Optional<Entry> findByLocation(String location);
 }
+
+
+

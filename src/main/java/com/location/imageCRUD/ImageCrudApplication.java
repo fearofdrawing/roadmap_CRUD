@@ -25,9 +25,9 @@ public class ImageCrudApplication implements CommandLineRunner {
 		Entry entry2 = new Entry("Pāvilosta", "Kurzeme", "jūra");
 		entryRepository.save(entry2);
 		Entry entry3 = new Entry("Driškins", "LV", "kempings");
-		entryRepository.save(entry3);
+		//ntryRepository.save(entry3);
 		Entry entry4 = new Entry("Imanta", "Rīga", "māksla");
-		entryRepository.save(entry4);
+		//entryRepository.save(entry4);
 
 	}
 }
