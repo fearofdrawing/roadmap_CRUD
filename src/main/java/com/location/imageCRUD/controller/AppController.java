@@ -38,13 +38,25 @@ public class AppController {
 
   @PostMapping("/save")
   public String saveEntry(
-      Long id,
       @RequestParam ("image") MultipartFile file,
       @RequestParam ("title") String title,
       @RequestParam ("location") String location,
       @RequestParam ("category") String category
       ) {
-    entryService.saveEntry(id, file, title, location, category);
+    entryService.saveEntry(file, title, location, category);
+
+    return "redirect:/";
+  }
+
+  @PostMapping("/update")
+  public String updateEntry(
+      Long id,
+      @RequestParam ("image") MultipartFile file,
+      @RequestParam ("title") String title,
+      @RequestParam ("location") String location,
+      @RequestParam ("category") String category
+  ) {
+    entryService.updateEntry(id, file, title, location, category);
 
     return "redirect:/";
   }
