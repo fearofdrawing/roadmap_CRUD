@@ -30,6 +30,7 @@ public class EntryServiceTests {
 
     Entry entry = new Entry();
 
+    Long id = entry.getId();
     String testTitle = "Gauja";
     String testLocation = "Vidzeme";
     String testCategory = "pikniks";
@@ -38,7 +39,7 @@ public class EntryServiceTests {
     entry.setLocation(testLocation);
     entry.setCategory(testCategory);
 
-    entryService.saveEntry(testFile, "Gauja", "Vidzeme", "pikniks");
+    entryService.saveEntry(id, testFile, "Gauja", "Vidzeme", "pikniks");
     assertThat(entry.getLocation()).isEqualTo(testLocation);
     assertThat(entry.getTitle()).isEqualTo(testTitle);
     assertThat(entry.getLocation()).isEqualTo(testLocation);

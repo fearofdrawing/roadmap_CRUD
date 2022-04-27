@@ -8,12 +8,16 @@
 <div align="center">
   <h1>Edit Entry</h1>
   <br />
-  <form action="#" th:action="@{/save}" th:object="${entry}" method="post">
+  <form action="#" th:action="@{/save}" th:object="${entry}" method="post" enctype="multipart/form-data">
     <table border="0" cellpadding="10">
       <tr>
         <td>ID:</td>
         <td><input type="text" th:field="*{id}" readonly="readonly"/>
         </td>
+      </tr>
+      <tr>
+        <td>Image:</td>
+        <td><input type="file" th:field="*{image}"/></td>
       </tr>
       <tr>
         <td>Title:</td>
@@ -23,6 +27,10 @@
       <tr>
         <td>Location:</td>
         <td><input type="text" th:field="*{location}"/></td>
+      </tr>
+      <tr>
+        <td>Category:</td>
+        <td><input type="text" th:field="*{category}"/></td>
       </tr>
       <tr>
         <td colspan="2"><button type="submit">Save</button></td>

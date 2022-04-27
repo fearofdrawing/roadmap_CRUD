@@ -38,18 +38,19 @@ public class AppController {
 
   @PostMapping("/save")
   public String saveEntry(
+      Long id,
       @RequestParam ("image") MultipartFile file,
       @RequestParam ("title") String title,
       @RequestParam ("location") String location,
       @RequestParam ("category") String category
       ) {
-    entryService.saveEntry(file, title, location, category);
+    entryService.saveEntry(id, file, title, location, category);
 
     return "redirect:/";
   }
 
   @RequestMapping("edit/{id}")
-  public ModelAndView showEditEntryPage(@PathVariable (name="id") Long id) {
+  public ModelAndView showEditEntryPage(@PathVariable ("id") Long id) {
     ModelAndView modelAndView = new ModelAndView("edit_entry");
     Entry entry = entryService.getEntryById(id);
     modelAndView.addObject("entry", entry);
@@ -58,7 +59,7 @@ public class AppController {
   }
 
   @RequestMapping("delete/{id}")
-  public String deleteEntryPage(@PathVariable (name="id") Long id) {
+  public String deleteEntryPage(@PathVariable ("id") Long id) {
     entryService.deleteEntry(id);
 
     return "redirect:/";
